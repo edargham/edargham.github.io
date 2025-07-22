@@ -1,15 +1,455 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Elias' Portfolio</title>
-  <base href="https://edargham.github.io/">  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-  <script type="javascript" src="assets/jquery/jquery.min.js"></script>
-  <script type="javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="styles.19ea07ee738b898defd0.css"></head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elias Dargham - AI/ML Engineer</title>
+    <meta name="description" content="Elias Dargham - Software Engineer specializing in AI, ML, and Computer Vision">
+    <meta name="keywords" content="AI Engineer, Machine Learning, Deep Learning, Computer Vision, Software Engineer">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
 <body>
-  <app-root></app-root>
-<script src="runtime-es2015.e8a2810b3b08d6a1b6aa.js" type="module"></script><script src="runtime-es5.e8a2810b3b08d6a1b6aa.js" nomodule defer></script><script src="polyfills-es5.2b9ce34c123ac007a8ba.js" nomodule defer></script><script src="polyfills-es2015.0ef207fb7b4761464817.js" type="module"></script><script src="main-es2015.3605ff2f555063a1a1c0.js" type="module"></script><script src="main-es5.3605ff2f555063a1a1c0.js" nomodule defer></script></body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">ED</span>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#skills" class="nav-link">Skills</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#projects" class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#experience" class="nav-link">Experience</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="greeting">Hello, I'm</span>
+                    <span class="name">Elias Dargham</span>
+                </h1>
+                <p class="hero-subtitle">AI Engineer | ML Specialist | Computer Vision Expert</p>
+                <p class="hero-description">
+                    Passionate about building intelligent systems that solve real-world problems through
+                    machine learning, deep learning, and computer vision technologies.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                    <a href="cv.pdf" class="btn btn-secondary" target="_blank">
+                        <i class="fas fa-download"></i>
+                        Download CV
+                    </a>
+                </div>
+                <div class="hero-social">
+                    <a href="https://www.linkedin.com/in/edargham" target="_blank" class="social-link">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/edargham" target="_blank" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="mailto:edargham@hotmail.com" class="social-link">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="code-animation">
+                    <div class="code-line">
+                        <span class="code-keyword">import</span> 
+                        <span class="code-module">tensorflow</span> 
+                        <span class="code-keyword">as</span> 
+                        <span class="code-variable">tf</span>
+                    </div>
+                    <div class="code-line">
+                        <span class="code-keyword">from</span> 
+                        <span class="code-module">keras</span> 
+                        <span class="code-keyword">import</span> 
+                        <span class="code-class">Sequential</span>
+                    </div>
+                    <div class="code-line">
+                        <span class="code-keyword">model</span> = 
+                        <span class="code-class">Sequential</span>()
+                    </div>
+                    <div class="code-line">
+                        <span class="code-variable">model</span>.<span class="code-method">compile</span>(
+                        <span class="code-string">'adam'</span>)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="about-intro">
+                        I'm a passionate software engineer with expertise in machine learning, deep learning, 
+                        and computer vision. Known for quickly learning concepts and efficiently connecting 
+                        ideas to solve complex problems.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <h3 class="stat-number">4+</h3>
+                            <p class="stat-label">Years Experience</p>
+                        </div>
+                        <div class="stat">
+                            <h3 class="stat-number">15+</h3>
+                            <p class="stat-label">Projects Completed</p>
+                        </div>
+                        <div class="stat">
+                            <h3 class="stat-number">3</h3>
+                            <p class="stat-label">Certifications</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-education">
+                    <h3 class="education-title">Education</h3>
+                    <div class="education-item">
+                        <h4>Masters in Artificial Intelligence</h4>
+                        <p class="education-school">École Supérieure d'Ingénieurs de Beyrouth</p>
+                        <p class="education-period">&nbsp;&nbsp;Aug 2023 - Dec 2024</p>
+                        <p class="education-grade">&nbsp;&nbsp;Grade: 16.73/20 (~3.7+/4.0 GPA)</p>
+                    </div>
+                    <div class="education-item">
+                        <h4>Bachelor of Science in Computer Science</h4>
+                        <p class="education-school">Lebanese American University</p>
+                        <p class="education-period">&nbsp;&nbsp;Aug 2016 - Jun 2021</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-brain"></i>
+                        Machine Learning & AI
+                    </h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Keras</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">MLFlow</span>
+                        <span class="skill-tag">LLMs</span>
+                        <span class="skill-tag">Computer Vision</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-code"></i>
+                        Programming Languages
+                    </h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">C#</span>
+                        <span class="skill-tag">C/C++</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">JavaScript</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-tools"></i>
+                        Frameworks & Technologies
+                    </h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">.NET Core</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Express</span>
+                        <span class="skill-tag">Flutter</span>
+                        <span class="skill-tag">OpenCV</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-database"></i>
+                        Databases & Tools
+                    </h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">SQL Server</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Linux</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Selected Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Rainfall Data Analysis</h3>
+                        <span class="project-period">Jan 2025 - Jul 2025</span>
+                    </div>
+                    <p class="project-description">
+                        Master's thesis project analyzing rainfall data using satellite imagery and machine learning.
+                        Achieved 46.2% improvement over statistical methods using TCN with Sparse Attention.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">PyTorch</span>
+                        <span class="tech-tag">Google Earth Engine</span>
+                        <span class="tech-tag">NASA Giovanni</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Project Hackerman</h3>
+                        <span class="project-period">Dec 2024</span>
+                    </div>
+                    <p class="project-description">
+                        AI-powered network security analysis tool that interprets Nmap scan results and generates
+                        user-friendly reports with recommended next steps.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Ollama</span>
+                        <span class="tech-tag">Gemini</span>
+                        <span class="tech-tag">OpenAI</span>
+                        <span class="tech-tag">Nmap</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">MLOps Pipeline</h3>
+                        <span class="project-period">Nov 2024</span>
+                    </div>
+                    <p class="project-description">
+                        End-to-end training and inference pipeline for YOLO models with experiment tracking,
+                        continuous model serving, and CI/CD workflows.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">MLFlow</span>
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">GitHub Actions</span>
+                        <span class="tech-tag">PyPoetry</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Project HawkEYE</h3>
+                        <span class="project-period">Mar - Apr 2024</span>
+                    </div>
+                    <p class="project-description">
+                        Computer vision pipeline combining YOLOv8 object detection, DeepSort tracking,
+                        and ExpansionNetV2 for automated image captioning.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">PyTorch</span>
+                        <span class="tech-tag">TorchServe</span>
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">OpenCV</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Shopply Mobile App</h3>
+                        <span class="project-period">May - Aug 2023</span>
+                    </div>
+                    <p class="project-description">
+                        Cross-platform mobile application connecting entrepreneurs with suppliers and clients.
+                        Full-stack development with modern Flutter UI and Node.js backend.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Flutter</span>
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Neural Style Transfer</h3>
+                        <span class="project-period">2022 - 2024</span>
+                    </div>
+                    <p class="project-description">
+                        Deep learning model that applies artistic styles to images using neural style transfer
+                        techniques with TensorFlow and Keras.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">TensorFlow</span>
+                        <span class="tech-tag">Keras</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">TensorBoard</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3 class="job-title">AI Engineer</h3>
+                        <p class="company">Systeminence S.A.L.</p>
+                        <p class="period">Feb 2025 - Present</p>
+                        <ul class="job-responsibilities">
+                            <li>Developed YOLO models for road-safety violation detection including seatbelt, helmet and mobile usage detection</li>
+                            <li>Created human pose detection models for raised hand detection in school environments</li>
+                            <li>Oversaw deployment of computer vision models on edge devices</li>
+                            <li>Worked on Vehicle-License Plate Recognition software components</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3 class="job-title">Junior Software Engineer</h3>
+                        <p class="company">Systeminence Offshore S.A.L.</p>
+                        <p class="period">May 2021 - Jan 2025</p>
+                        <ul class="job-responsibilities">
+                            <li>Developed and optimized features for large-scale video management system integrations</li>
+                            <li>Built distributed systems using Windows Management Instrumentation (WMI) extensions</li>
+                            <li>Created neural network classifiers for license plate template classification</li>
+                            <li>Developed real-time media players with multi-source streaming capabilities</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3 class="job-title">Software Development Intern</h3>
+                        <p class="company">SABIS International School</p>
+                        <p class="period">Jul - Aug 2019</p>
+                        <ul class="job-responsibilities">
+                            <li>Assisted in developing new features using Ionic Framework</li>
+                            <li>Helped with testing and bug fixing in internal projects</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Let's Connect</h3>
+                    <p>
+                        I'm always interested in discussing new opportunities, collaborating on AI/ML projects,
+                        or simply connecting with fellow developers and researchers.
+                    </p>
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <a href="mailto:edargham@hotmail.com">edargham@hotmail.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Location</h4>
+                                <p>St. Thecla Street Bouar, Lebanon</p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Phone</h4>
+                                <a href="tel:+96181207722">+961 81 20 77 22</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-languages">
+                    <h3>Languages</h3>
+                    <div class="language-list">
+                        <div class="language-item">
+                            <span class="language">Arabic</span>
+                            <span class="proficiency">Native</span>
+                        </div>
+                        <div class="language-item">
+                            <span class="language">English</span>
+                            <span class="proficiency">Fluent</span>
+                        </div>
+                        <div class="language-item">
+                            <span class="language">French</span>
+                            <span class="proficiency">Professional</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Elias Dargham. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
 </html>
