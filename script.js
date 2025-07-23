@@ -3,6 +3,8 @@ const navbar = document.getElementById('navbar');
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('nav-menu');
 const navLinks = document.querySelectorAll('.nav-link');
+const themeToggle = document.getElementById('theme-toggle');
+const themeIcon = document.getElementById('theme-icon');
 
 // Utility Functions
 const debounce = (func, wait) => {
@@ -29,6 +31,80 @@ const throttle = (func, limit) => {
         }
     };
 };
+
+// Theme Toggle Functionality
+class ThemeToggle {
+    constructor() {
+        this.currentTheme = this.getInitialTheme();
+        this.init();
+    }
+
+    getInitialTheme() {
+        // Check localStorage first
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            return savedTheme;
+        }
+        
+        // Check system preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            return 'dark';
+        }
+        
+        return 'light';
+    }
+
+    init() {
+        this.setTheme(this.currentTheme);
+        this.bindEvents();
+        this.watchSystemTheme();
+    }
+
+    watchSystemTheme() {
+        if (window.matchMedia) {
+            const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+            mediaQuery.addEventListener('change', (e) => {
+                // Only change if no preference is saved
+                if (!localStorage.getItem('theme')) {
+                    this.setTheme(e.matches ? 'dark' : 'light');
+                }
+            });
+        }
+    }
+
+    bindEvents() {
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                this.toggleTheme();
+            });
+        }
+    }
+
+    setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        this.currentTheme = theme;
+        localStorage.setItem('theme', theme);
+        
+        if (themeIcon) {
+            // Add smooth transition for icon change
+            themeIcon.style.transform = 'scale(0.8)';
+            
+            setTimeout(() => {
+                if (theme === 'dark') {
+                    themeIcon.className = 'fas fa-sun';
+                } else {
+                    themeIcon.className = 'fas fa-moon';
+                }
+                themeIcon.style.transform = 'scale(1)';
+            }, 150);
+        }
+    }
+
+    toggleTheme() {
+        const newTheme = this.currentTheme === 'light' ? 'dark' : 'light';
+        this.setTheme(newTheme);
+    }
+}
 
 // Navigation Functionality
 class Navigation {
@@ -913,6 +989,7 @@ class App {
 
     initializeComponents() {
         try {
+            new ThemeToggle();
             new Navigation();
             new AnimationController();
             new CodeAnimation();
