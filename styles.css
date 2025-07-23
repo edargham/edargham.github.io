@@ -30,6 +30,58 @@
     --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-size-base: 16px;
     --line-height-base: 1.6;
+}
+
+/* Dark mode variables */
+[data-theme="dark"] {
+    --background-light: #0f0f23;
+    --background-dark: #1e1b4b;
+    --surface-light: #1e1b4b;
+    --surface-dark: #312e81;
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-light: #94a3b8;
+    --border-color: #334155;
+}
+
+/* Dark mode specific overrides */
+[data-theme="dark"] .about,
+[data-theme="dark"] .skills,
+[data-theme="dark"] .projects,
+[data-theme="dark"] .experience,
+[data-theme="dark"] .contact {
+    background: var(--background-dark);
+}
+
+[data-theme="dark"] .project-card,
+[data-theme="dark"] .skill-category,
+[data-theme="dark"] .timeline-content {
+    background: var(--surface-light);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .navbar {
+    background: rgba(15, 15, 35, 0.95);
+    border-color: rgba(6, 182, 212, 0.3);
+}
+
+[data-theme="dark"] .navbar.scrolled {
+    background: rgba(15, 15, 35, 0.98) !important;
+    border-color: rgba(6, 182, 212, 0.4);
+    box-shadow: 0 4px 6px -1px rgba(6, 182, 212, 0.1), 0 2px 4px -1px rgba(6, 182, 212, 0.06);
+}
+
+[data-theme="dark"] .footer {
+    background: var(--background-dark);
+    border-color: var(--border-color);
+}
+
+/* Smooth theme transitions */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+:root {
     
     /* Spacing */
     --spacing-xs: 0.25rem;
@@ -154,6 +206,39 @@ body {
     color: var(--primary-color);
 }
 
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: var(--radius-lg);
+    background: var(--surface-light);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: var(--transition-base);
+    font-size: 1rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.theme-toggle:hover {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+}
+
+#theme-icon {
+    transition: transform 0.3s ease;
+}
+
 .hamburger {
     display: none;
     flex-direction: column;
@@ -176,6 +261,7 @@ body {
     position: relative;
     background: linear-gradient(135deg, #0f0f23 0%, #1e1b4b 50%, #312e81 100%);
     overflow: hidden;
+    padding-top: 80px; /* Account for fixed navbar */
 }
 
 .hero::before {
@@ -1878,6 +1964,12 @@ section {
         display: flex;
     }
     
+    .theme-toggle {
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
+    }
+    
     .nav-menu {
         position: fixed;
         left: -100%;
@@ -1917,7 +2009,7 @@ section {
         grid-template-columns: 1fr;
         text-align: center;
         gap: var(--spacing-xl);
-        padding: 0 var(--spacing-md);
+        padding: var(--spacing-lg) var(--spacing-md) 0;
         justify-items: center;
         align-items: center;
     }
