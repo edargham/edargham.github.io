@@ -1637,15 +1637,19 @@ section {
     transform: translateX(-4px);
 }
 
-/* Contact Form Styles */
+/* Contact Form Styles - Cyberpunk Theme */
 .contact-form-section {
-    background: var(--background-light);
-    padding: var(--spacing-xl);
+    background: linear-gradient(135deg, rgba(15, 15, 35, 0.95) 0%, rgba(30, 27, 75, 0.95) 100%);
+    padding: var(--spacing-2xl);
     border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-lg);
-    border: 1px solid var(--border-color);
+    box-shadow: 
+        var(--shadow-xl),
+        0 0 30px rgba(6, 182, 212, 0.2),
+        inset 0 0 50px rgba(168, 85, 247, 0.05);
+    border: 1px solid rgba(6, 182, 212, 0.3);
     position: relative;
     overflow: hidden;
+    backdrop-filter: blur(20px);
 }
 
 .contact-form-section::before {
@@ -1655,30 +1659,54 @@ section {
     left: 0;
     right: 0;
     height: 4px;
-    background: var(--gradient-primary);
+    background: var(--gradient-cyberpunk);
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+.contact-form-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="cyber-grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="%2306b6d4" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23cyber-grid)"/></svg>');
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 1;
 }
 
 .contact-form-section h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: 1.75rem;
+    font-weight: 700;
     margin-bottom: var(--spacing-md);
     color: var(--text-primary);
-    background: var(--gradient-primary);
+    background: var(--gradient-cyberpunk);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    text-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
 }
 
 .contact-form-section p {
     color: var(--text-secondary);
-    margin-bottom: var(--spacing-xl);
-    line-height: 1.6;
+    margin-bottom: var(--spacing-2xl);
+    line-height: 1.7;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    font-size: 1.05rem;
 }
 
 .contact-form {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-xl);
+    position: relative;
+    z-index: 2;
 }
 
 .form-group {
@@ -1688,56 +1716,85 @@ section {
 }
 
 .form-group label {
-    font-weight: 500;
-    color: var(--text-primary);
+    font-weight: 600;
+    color: var(--primary-color);
     margin-bottom: var(--spacing-sm);
     font-size: 0.875rem;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+    transition: var(--transition-base);
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
-    padding: var(--spacing-md);
-    border: 2px solid var(--border-color);
-    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    border: 2px solid rgba(6, 182, 212, 0.3);
+    border-radius: var(--radius-lg);
     font-family: var(--font-family);
-    font-size: var(--font-size-base);
-    background: var(--background-light);
+    font-size: 1rem;
+    background: rgba(15, 15, 35, 0.8);
     color: var(--text-primary);
-    transition: var(--transition-base);
+    transition: all 0.3s ease;
     outline: none;
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        inset 0 2px 4px rgba(0, 0, 0, 0.2),
+        0 0 0 0 rgba(6, 182, 212, 0);
+    position: relative;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: rgba(148, 163, 184, 0.7);
+    font-style: italic;
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
-    transform: translateY(-1px);
+    background: rgba(15, 15, 35, 0.95);
+    box-shadow: 
+        inset 0 2px 4px rgba(0, 0, 0, 0.2),
+        0 0 20px rgba(6, 182, 212, 0.4),
+        0 0 0 3px rgba(6, 182, 212, 0.1);
+    transform: translateY(-2px);
+    color: var(--text-primary);
 }
 
 .form-group input:hover,
 .form-group select:hover,
 .form-group textarea:hover {
-    border-color: var(--primary-color);
+    border-color: rgba(6, 182, 212, 0.6);
+    box-shadow: 
+        inset 0 2px 4px rgba(0, 0, 0, 0.2),
+        0 0 15px rgba(6, 182, 212, 0.2);
+    transform: translateY(-1px);
 }
 
 .form-group textarea {
     resize: vertical;
-    min-height: 120px;
+    min-height: 140px;
     line-height: 1.6;
+    font-family: var(--font-family);
 }
 
 .form-group select {
     cursor: pointer;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
-    background-position: right 12px center;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2306b6d4' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 16px center;
     background-repeat: no-repeat;
     background-size: 16px;
-    padding-right: 40px;
+    padding-right: 50px;
     appearance: none;
+}
+
+.form-group select option {
+    background: rgba(15, 15, 35, 0.95);
+    color: var(--text-primary);
+    padding: var(--spacing-sm);
 }
 
 .recaptcha-container {
@@ -1774,73 +1831,119 @@ section {
     text-decoration: underline;
 }
 
-/* reCAPTCHA v3 Notice */
+/* reCAPTCHA v3 Notice - Cyberpunk Style */
 .recaptcha-v3-notice {
-    margin-top: var(--spacing-md);
+    margin-top: var(--spacing-lg);
     text-align: center;
-    opacity: 0.8;
+    opacity: 0.7;
+    position: relative;
+    z-index: 2;
 }
 
 .recaptcha-v3-notice small {
     color: var(--text-secondary);
     font-size: 0.75rem;
-    line-height: 1.4;
+    line-height: 1.5;
+    font-style: italic;
 }
 
 .recaptcha-v3-notice a {
     color: var(--primary-color);
     text-decoration: none;
     transition: var(--transition-base);
+    text-shadow: 0 0 5px rgba(6, 182, 212, 0.3);
 }
 
 .recaptcha-v3-notice a:hover {
-    color: var(--primary-dark);
+    color: var(--secondary-color);
     text-decoration: underline;
+    text-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
 }
 
 .form-submit-btn {
-    align-self: flex-start;
-    padding: var(--spacing-md) var(--spacing-xl);
-    font-size: 1rem;
+    align-self: center;
+    padding: var(--spacing-lg) var(--spacing-2xl);
+    font-size: 1.1rem;
     font-weight: 600;
     border: none;
     border-radius: var(--radius-lg);
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    min-width: 150px;
+    min-width: 200px;
     justify-content: center;
-    transition: var(--transition-base);
+    transition: all 0.3s ease;
+    background: var(--gradient-primary);
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 
+        var(--shadow-lg),
+        0 0 20px rgba(6, 182, 212, 0.3);
+}
+
+.form-submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.8s ease;
+}
+
+.form-submit-btn:hover::before {
+    left: 100%;
+}
+
+.form-submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+        var(--shadow-xl),
+        0 0 30px rgba(6, 182, 212, 0.5),
+        0 0 50px rgba(168, 85, 247, 0.3);
+    background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 50%, #a855f7 100%);
+}
+
+.form-submit-btn:active {
+    transform: translateY(-1px);
 }
 
 .form-submit-btn:disabled {
     opacity: 0.7;
     cursor: not-allowed;
     transform: none !important;
+    background: rgba(100, 116, 139, 0.5);
+    box-shadow: none;
 }
 
 .form-submit-btn:disabled:hover {
     transform: none !important;
-    box-shadow: var(--shadow-lg) !important;
+    box-shadow: none !important;
 }
 
 .btn-text,
 .btn-loading {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: var(--spacing-sm);
     transition: var(--transition-base);
+    position: relative;
+    z-index: 2;
 }
 
 .form-status {
-    padding: var(--spacing-md);
-    border-radius: var(--radius-md);
-    margin-top: var(--spacing-md);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    margin-top: var(--spacing-lg);
     font-weight: 500;
     text-align: center;
     opacity: 0;
     transform: translateY(-10px);
-    transition: var(--transition-base);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
 }
 
 .form-status.show {
@@ -1849,15 +1952,17 @@ section {
 }
 
 .form-status.success {
-    background: rgba(34, 197, 94, 0.1);
-    color: #15803d;
-    border: 1px solid rgba(34, 197, 94, 0.3);
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(34, 197, 94, 0.1) 100%);
+    color: #22c55e;
+    border: 1px solid rgba(34, 197, 94, 0.4);
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.2);
 }
 
 .form-status.error {
-    background: rgba(239, 68, 68, 0.1);
-    color: #dc2626;
-    border: 1px solid rgba(239, 68, 68, 0.3);
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(239, 68, 68, 0.1) 100%);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.2);
 }
 
 /* Input validation states */
@@ -1865,21 +1970,29 @@ section {
 .form-group.error select,
 .form-group.error textarea {
     border-color: #ef4444;
-    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+    box-shadow: 
+        inset 0 2px 4px rgba(0, 0, 0, 0.2),
+        0 0 15px rgba(239, 68, 68, 0.3);
+    background: rgba(239, 68, 68, 0.05);
 }
 
 .form-group.success input,
 .form-group.success select,
 .form-group.success textarea {
     border-color: #22c55e;
-    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+    box-shadow: 
+        inset 0 2px 4px rgba(0, 0, 0, 0.2),
+        0 0 15px rgba(34, 197, 94, 0.3);
+    background: rgba(34, 197, 94, 0.05);
 }
 
 .error-message {
     color: #ef4444;
-    font-size: 0.75rem;
-    margin-top: var(--spacing-xs);
+    font-size: 0.8rem;
+    margin-top: var(--spacing-sm);
     display: none;
+    font-weight: 500;
+    text-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
 }
 
 .form-group.error .error-message {
