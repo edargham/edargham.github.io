@@ -829,14 +829,20 @@ class PerformanceOptimizer {
     }
 }
 
-// Contact Form Handler (if needed in the future)
+// Contact Form Handler
 class ContactHandler {
     constructor() {
+        this.form = document.getElementById('contact-form');
+        this.submitBtn = document.getElementById('submit-btn');
+        this.formStatus = document.getElementById('form-status');
+        this.isSubmitting = false;
         this.init();
     }
 
     init() {
         this.setupContactMethods();
+        this.setupFormValidation();
+        this.setupFormSubmission();
     }
 
     setupContactMethods() {
@@ -855,6 +861,225 @@ class ContactHandler {
                     });
                 }
             });
+        });
+    }
+
+    setupFormValidation() {
+        if (!this.form) return;
+
+        const inputs = this.form.querySelectorAll('input, select, textarea');
+        
+        inputs.forEach(input => {
+            input.addEventListener('blur', () => this.validateField(input));
+            input.addEventListener('input', () => this.clearFieldError(input));
+        });
+    }
+
+    setupFormSubmission() {
+        if (!this.form) return;
+
+        this.form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.handleFormSubmission();
+        });
+    }
+
+    validateField(field) {
+        const formGroup = field.closest('.form-group');
+        const value = field.value.trim();
+        let isValid = true;
+        let errorMessage = '';
+
+        // Remove previous validation states
+        formGroup.classList.remove('error', 'success');
+        
+        // Basic validation
+        if (field.required && !value) {
+            isValid = false;
+            errorMessage = 'This field is required.';
+        } else if (field.type === 'email' && value && !this.isValidEmail(value)) {
+            isValid = false;
+            errorMessage = 'Please enter a valid email address.';
+        } else if (field.name === 'name' && value && value.length < 2) {
+            isValid = false;
+            errorMessage = 'Name must be at least 2 characters long.';
+        } else if (field.name === 'message' && value && value.length < 10) {
+            isValid = false;
+            errorMessage = 'Message must be at least 10 characters long.';
+        }
+
+        // Update UI based on validation
+        if (!isValid) {
+            formGroup.classList.add('error');
+            this.showFieldError(formGroup, errorMessage);
+        } else if (value) {
+            formGroup.classList.add('success');
+            this.hideFieldError(formGroup);
+        }
+
+        return isValid;
+    }
+
+    clearFieldError(field) {
+        const formGroup = field.closest('.form-group');
+        formGroup.classList.remove('error');
+        this.hideFieldError(formGroup);
+    }
+
+    showFieldError(formGroup, message) {
+        let errorEl = formGroup.querySelector('.error-message');
+        if (!errorEl) {
+            errorEl = document.createElement('div');
+            errorEl.className = 'error-message';
+            formGroup.appendChild(errorEl);
+        }
+        errorEl.textContent = message;
+    }
+
+    hideFieldError(formGroup) {
+        const errorEl = formGroup.querySelector('.error-message');
+        if (errorEl) {
+            errorEl.style.display = 'none';
+        }
+    }
+
+    isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    validateForm() {
+        const inputs = this.form.querySelectorAll('input[required], select[required], textarea[required]');
+        let isFormValid = true;
+
+        inputs.forEach(input => {
+            if (!this.validateField(input)) {
+                isFormValid = false;
+            }
+        });
+
+        return isFormValid;
+    }
+
+    async handleFormSubmission() {
+        if (this.isSubmitting) return;
+
+        // Validate form
+        if (!this.validateForm()) {
+            this.showFormStatus('Please fix the errors above.', 'error');
+            return;
+        }
+
+        this.isSubmitting = true;
+        this.setSubmittingState(true);
+
+        try {
+            // Get reCAPTCHA v3 token
+            const recaptchaToken = await this.getReCaptchaToken();
+            
+            const formData = new FormData(this.form);
+            formData.append('g-recaptcha-response', recaptchaToken);
+
+            // Submit to Formspree
+            const response = await this.submitToFormspree(formData);
+            
+            this.showFormStatus('Thank you! Your message has been sent successfully.', 'success');
+            this.resetForm();
+            
+        } catch (error) {
+            console.error('Form submission error:', error);
+            
+            if (error.message.includes('reCAPTCHA')) {
+                this.showFormStatus('Security verification failed. Please refresh the page and try again.', 'error');
+            } else {
+                this.showFormStatus('Sorry, there was an error sending your message. Please try again.', 'error');
+            }
+        } finally {
+            this.isSubmitting = false;
+            this.setSubmittingState(false);
+        }
+    }
+
+    async simulateFormSubmission(formData) {
+        // Simulate network delay
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                console.log('Form data:', Object.fromEntries(formData));
+                resolve({ ok: true });
+            }, 2000);
+        });
+    }
+
+    async getReCaptchaToken() {
+        return new Promise((resolve, reject) => {
+            if (typeof grecaptcha === 'undefined') {
+                reject(new Error('reCAPTCHA not loaded'));
+                return;
+            }
+
+            grecaptcha.ready(() => {
+                grecaptcha.execute('6LfuAZQrAAAAANoHPDd2Kr_aSXVN24-DHOL2aYFN', { action: 'contact_form' })
+                    .then((token) => {
+                        resolve(token);
+                    })
+                    .catch((error) => {
+                        reject(error);
+                    });
+            });
+        });
+    }
+
+    async submitToFormspree(formData) {
+        const response = await fetch(this.form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        return response;
+    }
+
+    setSubmittingState(isSubmitting) {
+        const btnText = this.submitBtn.querySelector('.btn-text');
+        const btnLoading = this.submitBtn.querySelector('.btn-loading');
+        
+        if (isSubmitting) {
+            btnText.style.display = 'none';
+            btnLoading.style.display = 'flex';
+            this.submitBtn.disabled = true;
+        } else {
+            btnText.style.display = 'flex';
+            btnLoading.style.display = 'none';
+            this.submitBtn.disabled = false;
+        }
+    }
+
+    showFormStatus(message, type) {
+        this.formStatus.textContent = message;
+        this.formStatus.className = `form-status ${type} show`;
+        
+        // Auto-hide success messages after 5 seconds
+        if (type === 'success') {
+            setTimeout(() => {
+                this.formStatus.classList.remove('show');
+            }, 5000);
+        }
+    }
+
+    resetForm() {
+        this.form.reset();
+        
+        // Remove validation states
+        const formGroups = this.form.querySelectorAll('.form-group');
+        formGroups.forEach(group => {
+            group.classList.remove('error', 'success');
+            this.hideFieldError(group);
         });
     }
 }
